@@ -1,17 +1,17 @@
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+from seaborn import jointplot as jp
 from statsmodels.formula.api import ols
+from pandas import read_csv
+from matplotlib import pyplot as plt, patches, path
 
-df = pd.read_csv('/data/kc_house_data.csv')
+file_path = "/Users/thiagocarvalho/Documents/GitHub/completion_work/data/kc_house_data.csv"
+
+df = read_csv(file_path)
 df.head()
-
 df.isnull().any()
 df.dtypes
-
 df.describe()
 
-fig = plt.figure(figsize=(12, 6))
+fig = plt.figure(figsize=(15, 8))
 sqft = fig.add_subplot(121)
 cost = fig.add_subplot(122)
 
@@ -31,5 +31,5 @@ print (m.summary())
 m = ols('price ~ sqft_living + bedrooms + grade + condition',df).fit()
 print (m.summary())
 
-sns.jointplot(x="sqft_living", y="price", data=df, kind = 'reg',fit_reg= True, size = 7)
+jp(x="sqft_living", y="price", data=df, kind="reg", fit_reg=True, size=8)
 plt.show()
