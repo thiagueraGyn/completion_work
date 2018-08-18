@@ -8,6 +8,7 @@ __pycache__/
 
 # Folder
 /data/
+.vscode
 
 # Distribution / packaging
 .Python
